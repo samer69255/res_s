@@ -29,7 +29,7 @@ function sendTextMessage(sender, text) {
 
 
 
-function sendFileMessage(sender,ob,fn) {
+function sendFileMessage5(sender,ob,fn) {
     var messageData = { attachment:{
         "type":ob.type,
         "payload":{
@@ -64,7 +64,7 @@ function sendFileMessage(sender,ob,fn) {
     });
 }
 
-function sendFileMessage2(sender,ob,fn) {
+function sendFileMessage(sender,ob,fn) {
     var messageData = { attachment:{
         "type":ob.type,
         "payload":{
@@ -113,7 +113,7 @@ function stop() {
 
 
 exports.sendTextMessage = sendTextMessage;
-exports.sendTextMessage2 = sendTextMessage2;
+exports.sendTextMessage5 = sendTextMessage5;
 exports.sendFileMessage = sendFileMessage;
 exports.stop = stop;
 exports.sendVideo = sendVideo;
