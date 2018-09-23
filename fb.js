@@ -30,7 +30,23 @@ function sendTextMessage(sender, text) {
 
 function sendTextMessageT(sender, text) {
     
-    var messageData = { text:text };
+    var messageData = {attachment: {
+        "type":"template",
+        "text":text,
+      "payload":{
+        "template_type":"button",
+        "text":"What do you want to do next?",
+        "buttons":[
+          {
+            "type":"web_url",
+            "url":"https://www.messenger.com",
+            "title":"Visit Messenger"
+          }
+          
+        ]
+      }
+    }
+    } };
 
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
