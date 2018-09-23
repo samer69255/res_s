@@ -32,7 +32,6 @@ function sendTextMessageT(sender, text) {
     
     var messageData = {attachment: {
         "type":"template",
-        "text":text,
       "payload":{
         "template_type":"button",
         "text":"What do you want to do next?",
