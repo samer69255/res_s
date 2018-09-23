@@ -28,16 +28,9 @@ function sendTextMessage(sender, text) {
 
 
 
-
-function sendFileMessage5(sender,ob,fn) {
-    var messageData = { attachment:{
-        "type":ob.type,
-        "payload":{
-        "url":ob.url, 
-        "is_reusable":true
-      }
-    },
-        };
+function sendTextMessageT(sender, text) {
+    
+    var messageData = { text:text };
 
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -52,17 +45,16 @@ function sendFileMessage5(sender,ob,fn) {
             {console.log('Error sending messages: ', error);
                
             }
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
         }
-        else if (response.body.error) {
-            console.log('Error: ', response.body.error);
-            console.log(ob);
-            
-        }
-        
-        fn();
-        
     });
 }
+
+
+
+
+
 
 function sendFileMessage(sender,ob,fn) {
     var messageData = { attachment:{
@@ -102,6 +94,11 @@ function sendFileMessage(sender,ob,fn) {
 
 
 
+
+
+
+
+
 function sendfile() {
     
 }
@@ -113,7 +110,6 @@ function stop() {
 
 
 exports.sendTextMessage = sendTextMessage;
-exports.sendTextMessage5 = sendTextMessage5;
+exports.sendTextMessageT = sendTextMessageT;
 exports.sendFileMessage = sendFileMessage;
 exports.stop = stop;
-exports.sendVideo = sendVideo;
