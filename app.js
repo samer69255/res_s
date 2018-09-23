@@ -72,7 +72,7 @@ app.post('/webhook/', function (req, res) {
             console.log(text);
             text = text.trim().toLowerCase();
             
-            fb.sendFileMessage(sender,text);
+            fb.sendTextMessage(sender,text);
             
             
 
