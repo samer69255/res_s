@@ -93,7 +93,8 @@ app.post('/webhook/', function (req, res) {
         }
         if (event.postback) {
             var text = JSON.stringify(event.postback);
-            fb.sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token);
+            console.log('hi');
+            fb.sendTextMessage(sender, "Postback received: "+text.substring(0, 200));
             continue;
         }
     }
