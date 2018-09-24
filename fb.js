@@ -48,27 +48,6 @@ function getOB(N) {
         var btns = [
          
     
-            
-{type:'postback',
-title:'الكرخ الاولى',
-payload:'c1'},
-
-{type:'postback',
-title:'الكراخ الثانية',
-payload:'c2'},
-
-{type:'postback',
-title:'الكرخ الثالثة',
-payload:'c3'},
-
-{type:'postback',
-title:'الرصافة الاولى',
-payload:'c4'},
-
-{type:'postback',
-title:'الرصافة الثانية',
-payload:'c5'},
-
 
 
             

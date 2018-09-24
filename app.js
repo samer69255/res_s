@@ -77,8 +77,17 @@ app.post('/webhook/', function (req, res) {
                 
             }
             
+            if (! Users[sender].de) return fb.sendTextMessageT(sender,1);
             
-            fb.sendTextMessageT(sender,1);
+            if (! Users[sender].c){
+                Users[sender].c = text;
+                fb.sendTextMessage(sender,'اكتب اسم المدرسة');
+                return;
+            } 
+            
+            Users[sender].sc = text;
+            fb.sendTextMessage(sender,JSON.stringify(Users[id],null,4));
+            
             
             
 
@@ -91,19 +100,11 @@ app.post('/webhook/', function (req, res) {
         if (event.postback) {
             var text = JSON.stringify(event.postback);
             var de = event.postback.payload;
-            if (de == '1' || de == '2')
-                {
-                    fb.sendTextMessageT(sender,2);
+           
+                
+                    fb.sendTextMessage(sender,'اكتب المحافظة');
                     Users[sender].de = de;
-                }
-            else  if (de.charAt(0) == 'c') {
-                Users[sender].c = de;
-                fb.sendTextMessage(sender,'...');
-                console.log(JSON.stringify(Users,null,4));
-            }
-            else {
-                console.log(JSON.stringify(Users,null,4));
-            }
+                
             
             continue;
         }
