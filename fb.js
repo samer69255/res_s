@@ -47,12 +47,12 @@ function getOB(N) {
     else if (N == 2) {
         var btns = [
         {type:'postback',
-        title:'علمي',
-        payload:'1'
+        title:'بغداد',
+        payload:'c1'
         },
         {type:'postback',
-        title:'ادبي',
-        payload:'2'}
+        title:'المثنى',
+        payload:'c2'}
     ];
     var title = 'اختر المحافظة';
     }
