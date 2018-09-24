@@ -72,7 +72,7 @@ app.post('/webhook/', function (req, res) {
             console.log(text);
             text = text.trim().toLowerCase();
             
-            if (! sender in Users) {
+            if (!(sender in Users)) {
                 Users[sender] = {};
                 
             }
