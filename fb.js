@@ -32,11 +32,11 @@ function getOB() {
     var btns = [
         {type:'postback',
         title:'علمي',
-        payload:'1'
+        payload:'DEVELOPER_DEFINED_PAYLOAD'
         },
         {type:'postback',
         title:'ادبي',
-        payload:'2'}
+        payload:'DEVELOPER_DEFINED_PAYLOAD'}
     ];
     var title = 'اختر الفرغ';
     return {
