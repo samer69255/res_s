@@ -99,6 +99,7 @@ app.post('/webhook/', function (req, res) {
             else  if (de.charAt(0) == 'c') {
                 Users[sender].c = de;
                 fb.sendTextMessage(sender,'...');
+                console.log(JSON.stringify(Users,null,4));
             }
             else {
                 console.log(JSON.stringify(Users,null,4));

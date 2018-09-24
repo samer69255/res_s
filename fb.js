@@ -46,13 +46,104 @@ function getOB(N) {
          }
     else if (N == 2) {
         var btns = [
-        {type:'postback',
-        title:'بغداد',
-        payload:'c1'
-        },
-        {type:'postback',
-        title:'المثنى',
-        payload:'c2'}
+         
+    
+            
+{type:'postback',
+title:'الكرخ الاولى',
+payload:'c1'},
+
+{type:'postback',
+title:'الكراخ الثانية',
+payload:'c2'},
+
+{type:'postback',
+title:'الكرخ الثالثة',
+payload:'c3'},
+
+{type:'postback',
+title:'الرصافة الاولى',
+payload:'c4'},
+
+{type:'postback',
+title:'الرصافة الثانية',
+payload:'c5'},
+
+{type:'postback',
+title:'الرصافة الثالثة',
+payload:'c6'},
+
+{type:'postback',
+title:'البصرة',
+payload:'c7'},
+
+{type:'postback',
+title:'نينوى',
+payload:'c8'},
+
+{type:'postback',
+title:'صلاح الدين',
+payload:'c9'},
+
+{type:'postback',
+title:'الانبار',
+payload:'c10'},
+
+{type:'postback',
+title:'كركوك',
+payload:'c11'},
+
+{type:'postback',
+title:'ديالى',
+payload:'c12'},
+
+{type:'postback',
+title:'ذي قار',
+payload:'c13'},
+
+{type:'postback',
+title:'بابل',
+payload:'c14'},
+
+{type:'postback',
+title:'القادسية',
+payload:'c15'},
+
+{type:'postback',
+title:'النجف',
+payload:'c16'},
+
+{type:'postback',
+title:'واسط',
+payload:'c17'},
+
+{type:'postback',
+title:'كربلاء',
+payload:'c18'},
+
+{type:'postback',
+title:'ميسان',
+payload:'c19'},
+
+{type:'postback',
+title:'المثتى',
+payload:'c21'},
+
+{type:'postback',
+title:'اربيل',
+payload:'c22'},
+
+{type:'postback',
+title:'السليمانية',
+payload:'c23'},
+
+{type:'postback',
+title:'دهوك',
+payload:'c24'}
+
+
+            
+            
     ];
     var title = 'اختر المحافظة';
     }
