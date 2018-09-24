@@ -34,7 +34,7 @@ function getOB() {
         title:'علمي',
         payload:'علمي'
         },
-        {{type:'postback',
+        {type:'postback',
         title:'ادبي',
         payload:'ادبي'}
     ];
