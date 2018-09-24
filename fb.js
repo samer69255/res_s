@@ -27,12 +27,8 @@ function sendTextMessage(sender, text) {
 }
 
 
-
-function sendTextMessageT(sender, text) {
-    
-    var messageData = {attachment: {
-        "type":"template",
-      "payload":{
+function getOB() {
+    return {
         
            "template_type": "list",
   "top_element_style": "LARGE",
@@ -51,9 +47,17 @@ function sendTextMessageT(sender, text) {
     },
     
   ],
-   "buttons": [<BUTTON_OBJECT] 
+   "buttons": [] 
          
-      }
+      };
+}
+
+
+function sendTextMessageT(sender, text) {
+    
+    var messageData = {attachment: {
+        "type":"template",
+      "payload":getOB()
     }
     } ;
 
