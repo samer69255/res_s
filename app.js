@@ -18,8 +18,8 @@ var fs = require('fs');
 var cookieParser = require('cookie-parser');
 const app = express();
 app.use(express.static('public'));
-var gis = require('g-i-s');
 const fb = require('./fb');
+const {google} = require('googleapis');
 
 
 
@@ -96,6 +96,23 @@ app.post('/webhook/', function (req, res) {
               Users[sender].sc = text;
              fb.sendTextMessage(sender,'سيتم ارسال النتائج خلال بضع ثواني');
               Users[sender].stat = 'working';  
+              
+              
+              
+              var de = Users[sender].de;
+              var c = Users[sender].c;
+              var sc = Users[sender].sc;
+              if (de == '2') url = '0BxQWfstx5vwNN2ZZTGhqR0x1UzA';
+              else url = '0BxQWfstx5vwNN2ZZTGhqR0x1UzA';
+              
+              
+              
+              listFiles(url,(err,rr) => {
+                  onF1(rr,sender);
+              });
+       
+              
+              
                                    }
             
            
@@ -149,35 +166,75 @@ app.post('/webhook/', function (req, res) {
 
 
 
-function getC(cn) {
-    var list = {
-        c1:'الكرخ الاولى',
-        c2:'الكراخ الثانية',
-        c3:'الكرخ الثالثة',
-        c4:'الرصافة الاولى',
-        c5:'الرصافة الثانية',
-        c6:'الرصافة الثالثة',
-        c7:'البصرة',
-        c8:'نينوى',
-        c9:'صلاح الدين',
-        c10:'الانبار',
-        c11:'كركوك',
-        c12:'ديالى',
-        c13:'ذي قار',
-        c14:'بابل',
-        c15:'القادسية',
-        c16:'النجف',
-        c17:'واسط',
-        c18:'كربلاء',
-        c19:'ميسان',
-        c21:'المثتى',
-        c22:'اربيل',
-        c23:'السليمانية',
-        c24:'دهوك',
+
+function onF1(res,Id) {
+    const files = res.data.files;
+    
+    if (files.length) {
+        var id = null;
+      for (var i in files)
+          {
+              if ((files[i].name).indexOf(Users[Id].c) > -1 ) {  id=files[i].id; break;    }
+            
+                  
+          }
+        
+        
+        if (id == null) fb.sendTextMessage(Id,'تأكد من اسم المحافظة واعد المحاولة');
+        else
+            {
+                
+                listFiles(id,(err,rr) => {
+                    onF2(rr,Id);
+                })
+            }
+        
+        
+        
+    } else {
+      fb.sendTextMessage(Id,'لم يتم رفع النتائج الخاصة بهذه المحافظة اعد المحاولة في وقت اخر');
     }
+    
+    
 }
 
 
+
+function onF2(res,Id) {
+     const files = res.data.files;
+    
+    if (files.length) {
+        var id = null;
+      for (var i in files)
+          {
+              if ((files[i].name).indexOf(Users[Id].sc) > -1 ) {  id=files[i].name; break;    }
+            
+                  
+          }
+        
+        
+        if (id == null) fb.sendTextMessage(Id,'تأكد من اسم المدرسة واعد المحاولة');
+        else
+            {
+                
+                listFiles(id,(err,rr) => {
+                    sendTextMessage(Id,id);
+                })
+            }
+        
+        
+        
+    } else {
+      fb.sendTextMessage(Id,'لم يتم رفع النتائج الخاصة بهذه المحافظة اعد المحاولة في وقت اخر');
+    }
+    
+}
+
+
+
+function ft(txt) {
+    return txt.match(/آ-ي/g);
+}
 
 
 
@@ -191,6 +248,122 @@ function getHelp() {
 اكتب جديد للبدء من جديد`;
     return txt;
 }
+
+
+
+
+
+
+
+
+
+// google drive
+//==========================================
+
+ (function() {
+        
+         const SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
+const TOKEN_PATH = 'token.json';
+
+
+// Load client secrets from a local file.
+fs.readFile('credentials.json', (err, content) => {
+  if (err) return console.log('Error loading client secret file:', err);
+  // Authorize a client with credentials, then call the Google Drive API.
+  authorize(JSON.parse(content), start);
+});
+
+/**
+ * Create an OAuth2 client with the given credentials, and then execute the
+ * given callback function.
+ * @param {Object} credentials The authorization client credentials.
+ * @param {function} callback The callback to call with the authorized client.
+ */
+function authorize(credentials, callback) {
+  const {client_secret, client_id, redirect_uris} = credentials.installed;
+  const oAuth2Client = new google.auth.OAuth2(
+      client_id, client_secret, redirect_uris[0]);
+
+  // Check if we have previously stored a token.
+  fs.readFile(TOKEN_PATH, (err, token) => {
+    if (err) return getAccessToken(oAuth2Client, callback);
+    oAuth2Client.setCredentials(JSON.parse(token));
+    callback(oAuth2Client);
+  });
+}
+
+/**
+ * Get and store new token after prompting for user authorization, and then
+ * execute the given callback with the authorized OAuth2 client.
+ * @param {google.auth.OAuth2} oAuth2Client The OAuth2 client to get token for.
+ * @param {getEventsCallback} callback The callback for the authorized client.
+ */
+function getAccessToken(oAuth2Client, callback) {
+  const authUrl = oAuth2Client.generateAuthUrl({
+    access_type: 'offline',
+    scope: SCOPES,
+  });
+  console.log('Authorize this app by visiting this url:', authUrl);
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+  rl.question('Enter the code from that page here: ', (code) => {
+    rl.close();
+    oAuth2Client.getToken(code, (err, token) => {
+      if (err) return console.error('Error retrieving access token', err);
+      oAuth2Client.setCredentials(token);
+      // Store the token to disk for later program executions
+      fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
+        if (err) console.error(err);
+        console.log('Token stored to', TOKEN_PATH);
+      });
+        
+      start(oAuth2Client);
+       
+});
+  });
+}
+
+        
+    })();
+
+
+
+function start(auth) {
+ drive = google.drive({version: 'v3', auth});
+    console.log('hi');
+}
+
+function listFiles(fileId,callback) {
+  
+  drive.files.list({
+      includeRemoved: false,
+    spaces: 'drive',
+    fileId: fileId,
+    fields: 'nextPageToken, files(id, name)',
+    q: `'${fileId}' in parents`
+  }, callback);
+}
+   
+
+//=================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // spin spin sugar
