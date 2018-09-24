@@ -36,18 +36,11 @@ function getOB() {
     {
       "title": "<TITLE_TEXT>",
       "subtitle": "<SUBTITLE_TEXT>",
-      "image_url": "<IMAGE_URL_FOR_THUMBNAIL>",          
-      "buttons": [],
-      "default_action": {
-        "type": "web_url",
-        "url": "<URL_TO_OPEN_WHEN_ITEM_IS_TAPPED>",
-        "messenger_extensions": false,
-        "webview_height_ratio": "COMPACT"
-      }
+      "buttons": [{}],
     },
     
   ],
-   "buttons": [] 
+   "buttons": [{}] 
          
       };
 }
