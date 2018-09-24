@@ -94,9 +94,14 @@ app.post('/webhook/', function (req, res) {
             if (de == '1' || de == '2')
                 {
                     fb.sendTextMessageT(sender,2);
+                    Users[sender].de = de;
                 }
+            else  if (de[0] == 'c') {
+                Users[sender].c = de;
+                fb.sendTextMessage(sender,'...');
+            }
             else {
-                fb.sendTextMessage(sender,'...')
+                
             }
             
             continue;
