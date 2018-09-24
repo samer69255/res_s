@@ -240,6 +240,8 @@ function onF3(res,Id) {
                     fb.sendTextMessage(Id,id);
                     fb.sendTextMessage(Id,'شكرا لك');
                     
+                    var dest = fs.createWriteStream('/tmp/resume.pdf');
+                    
                     
                     drive.files.export({
                   fileId: id,
