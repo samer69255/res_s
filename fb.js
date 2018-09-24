@@ -34,28 +34,25 @@ function sendTextMessageT(sender, text) {
         "type":"template",
       "payload":{
         
-          
-          "template_type": "list",
-  "top_element_style": "<LARGE | COMPACT>",
+           "template_type": "list",
+  "top_element_style": "LARGE",
   "elements": [
     {
-      title: "اختر الفرع",
-      subtitle: "علمي ام ادبي؟",         
-      buttons: [{
-          type:'postback',
-          title:'علمي',
-          payload:'علمي'
-      },
-         {
-         type:'postback',
-          title:'ادبي',
-             payload:'ادبي'
-         }
-        ],
-     
+      "title": "<TITLE_TEXT>",
+      "subtitle": "<SUBTITLE_TEXT>",
+      "image_url": "<IMAGE_URL_FOR_THUMBNAIL>",          
+      "buttons": [],
+      "default_action": {
+        "type": "web_url",
+        "url": "<URL_TO_OPEN_WHEN_ITEM_IS_TAPPED>",
+        "messenger_extensions": false,
+        "webview_height_ratio": "COMPACT"
+      }
     },
-   
+    ...
   ],
+   "buttons": [<BUTTON_OBJECT] 
+         
       }
     }
     } ;
