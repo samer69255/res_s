@@ -49,7 +49,7 @@ function sendTextMessageT(sender, text) {
         "webview_height_ratio": "COMPACT"
       }
     },
-    ...
+    
   ],
    "buttons": [<BUTTON_OBJECT] 
          
