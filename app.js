@@ -96,7 +96,7 @@ app.post('/webhook/', function (req, res) {
                     fb.sendTextMessageT(sender,2);
                 }
             else {
-                fb.sendFileMessage(sender,'...')
+                fb.sendTextMessage(sender,'...')
             }
             
             continue;
