@@ -236,8 +236,8 @@ function onF3(res,Id) {
             {
                 
                 listFiles(id,(err,rr) => {
-                    sendTextMessage(Id,id);
-                })
+                    fb.sendTextMessage(Id,id);
+                });
             }
         
         
