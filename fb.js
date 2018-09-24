@@ -48,12 +48,18 @@ function getOB(N) {
         var btns = [
          
     
-
+{type:'postback',
+        title:'احيائي',
+        payload:'d1'
+        },
+        {type:'postback',
+        title:'تطبيقي',
+        payload:'d2'}
 
             
             
     ];
-    var title = 'اختر المحافظة';
+    var title = 'اختر واحد';
     }
     return {
         

@@ -77,16 +77,32 @@ app.post('/webhook/', function (req, res) {
                 
             }
             
-            if (! Users[sender].de) return fb.sendTextMessageT(sender,1);
             
-            if (! Users[sender].c){
+            if (! Users[sender].stat) {
+                Users[sender].stat = 'g1'
+                return fb.sendTextMessageT(sender,1);
+            } 
+            
+            if (Users[sender].stat == 'g1')
+                {
+                    fb.sendTextMessageT(sender,2);
+                    Users[sender].stat = 'c';
+                }
+            
+            if (Users[sender].stat == 'c'){
                 Users[sender].c = text;
                 fb.sendTextMessage(sender,'اكتب اسم المدرسة');
+                Users[sender].stat = 'sc';
                 return;
             } 
             
-            Users[sender].sc = text;
-            fb.sendTextMessage(sender,JSON.stringify(Users[sender],null,4));
+          if (Users[sender].stat == 'sc')  {
+              Users[sender].sc = text;
+             fb.sendTextMessage(sender,'سيتم ارسال النتائج خلال بضع ثواني');
+              Users[sender].stat = 'working';  
+                                   }
+            
+           
             
             
             
@@ -100,10 +116,13 @@ app.post('/webhook/', function (req, res) {
         if (event.postback) {
             var text = JSON.stringify(event.postback);
             var de = event.postback.payload;
+            
+           
            
                 
                     fb.sendTextMessage(sender,'اكتب المحافظة');
                     Users[sender].de = de;
+                    Users[sender].stat = 'c';
                 
             
             continue;
