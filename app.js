@@ -74,14 +74,11 @@ app.post('/webhook/', function (req, res) {
             
             if (!sender in Users) {
                 Users[sender] = {};
-                Users[sender].c = false;
-                User[sender].d = false;
-                User[sender].sc = false;
-                fb.sendTextMessageT(sender,1);
+                
             }
             
             
-            fb.sendTextMessageT(sender,text);
+            fb.sendTextMessageT(sender,1);
             
             
 
