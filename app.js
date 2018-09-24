@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.use(cookieParser());
-var IDS = {}
+var Users = {}
 
 // index
 app.get('/', function (req, res) {
@@ -66,11 +66,16 @@ app.post('/webhook/', function (req, res) {
 
         if (event.message && event.message.text) {
 
-            var re;
+        
 
             var text = event.message.text;
             console.log(text);
             text = text.trim().toLowerCase();
+            
+            if (!sender in Users) {
+                fb.sendTextMessageT(sender,'اختر المحافظة');
+            }
+            
             
             fb.sendTextMessage(sender,text);
             
