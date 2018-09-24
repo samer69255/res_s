@@ -27,18 +27,35 @@ function sendTextMessage(sender, text) {
 }
 
 
-function getOB() {
+function getOB(N) {
     
+    if (N == 1)
+        {
+            
+       
     var btns = [
         {type:'postback',
         title:'علمي',
-        payload:'DEVELOPER_DEFINED_PAYLOAD'
+        payload:'1'
         },
         {type:'postback',
         title:'ادبي',
-        payload:'DEVELOPER_DEFINED_PAYLOAD'}
+        payload:'2'}
     ];
     var title = 'اختر الفرغ';
+         }
+    else if (N == 2) {
+        var btns = [
+        {type:'postback',
+        title:'بغداد',
+        payload:'c1'
+        },
+        {type:'postback',
+        title:'المثنى',
+        payload:'c2'}
+    ];
+    var title = 'اختر المحافظة';
+    }
     return {
         
            "template_type": "button",
@@ -49,11 +66,11 @@ function getOB() {
 }
 
 
-function sendTextMessageT(sender, text) {
+function sendTextMessageT(sender,n) {
     
     var messageData = {attachment: {
         "type":"template",
-      "payload":getOB()
+      "payload":getOB(n)
     }
     } ;
 

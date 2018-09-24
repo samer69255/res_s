@@ -77,7 +77,7 @@ app.post('/webhook/', function (req, res) {
                 Users[sender].c = false;
                 User[sender].d = false;
                 User[sender].sc = false;
-                fb.sendTextMessageT(sender,'اختر المحافظة');
+                fb.sendTextMessageT(sender,1);
             }
             
             
@@ -93,8 +93,8 @@ app.post('/webhook/', function (req, res) {
         }
         if (event.postback) {
             var text = JSON.stringify(event.postback);
-            console.log('hi');
-            fb.sendTextMessage(sender, "Postback received: "+text.substring(0, 200));
+            var de = event.postback.payload;
+            fb.sendTextMessage(sender,2);
             continue;
         }
     }
