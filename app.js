@@ -236,7 +236,9 @@ function onF3(res,Id) {
             {
                 
                 listFiles(id,(err,rr) => {
+                    if (err) console.log(err);
                     fb.sendTextMessage(Id,id);
+                    fb.sendTextMessage(Id,'شكرا لك');
                 });
             }
         
