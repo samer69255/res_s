@@ -96,7 +96,7 @@ app.post('/webhook/', function (req, res) {
                     fb.sendTextMessageT(sender,2);
                     Users[sender].de = de;
                 }
-            else  if (de.charAt == 'c') {
+            else  if (de.charAt(0) == 'c') {
                 Users[sender].c = de;
                 fb.sendTextMessage(sender,'...');
             }
