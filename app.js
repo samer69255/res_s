@@ -96,12 +96,12 @@ app.post('/webhook/', function (req, res) {
                     fb.sendTextMessageT(sender,2);
                     Users[sender].de = de;
                 }
-            else  if (de[0] == 'c') {
+            else  if (de.charAt == 'c') {
                 Users[sender].c = de;
                 fb.sendTextMessage(sender,'...');
             }
             else {
-                
+                console.log(JSON.stringify(Users,null,4));
             }
             
             continue;
