@@ -73,6 +73,10 @@ app.post('/webhook/', function (req, res) {
             text = text.trim().toLowerCase();
             
             if (!sender in Users) {
+                Users[sender] = {};
+                Users[sender].c = false;
+                User[sender].d = false;
+                User[sender].sc = false;
                 fb.sendTextMessageT(sender,'اختر المحافظة');
             }
             

@@ -33,16 +33,29 @@ function sendTextMessageT(sender, text) {
     var messageData = {attachment: {
         "type":"template",
       "payload":{
-        "template_type":"button",
-        "text":"What do you want to do next?",
-        "buttons":[
-          {
-            "type":"web_url",
-            "url":"https://www.messenger.com",
-            "title":"Visit Messenger"
-          }
+        
           
-        ]
+          "template_type": "list",
+  "top_element_style": "<LARGE | COMPACT>",
+  "elements": [
+    {
+      title: "اختر الفرع",
+      subtitle: "علمي ام ادبي؟",         
+      buttons: [{
+          type:'postback',
+          title:'علمي',
+          payload:'علمي'
+      },
+         {
+         type:'postback',
+          title:'ادبي',
+             payload:'ادبي'
+         }
+        ],
+     
+    },
+   
+  ],
       }
     }
     } ;
