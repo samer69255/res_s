@@ -82,6 +82,7 @@ app.post('/webhook/', function (req, res) {
                 Users[sender].stat = 'g1'
                 return fb.sendTextMessageT(sender,1);
             } 
+            console.log(Users[sender].stat);
             
             if (Users[sender].stat == 'g1')
                 {
