@@ -212,7 +212,7 @@ function onF2(res,Id) {
         if (Users[Id].de == 'd1') var id = S1; else var id = S2;
     }
     
-    listFile(id,(err,rr) => {
+    listFiles(id,(err,rr) => {
         onF3(rr,Id);
     });
 }
