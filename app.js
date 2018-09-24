@@ -84,11 +84,6 @@ app.post('/webhook/', function (req, res) {
             } 
             console.log(Users[sender].stat);
             
-            if (Users[sender].stat == 'g1')
-                {
-                    fb.sendTextMessageT(sender,2);
-                    Users[sender].stat = 'c';
-                }
             
             if (Users[sender].stat == 'c'){
                 Users[sender].c = text;
@@ -118,11 +113,28 @@ app.post('/webhook/', function (req, res) {
             var text = JSON.stringify(event.postback);
             var de = event.postback.payload;
             
+            Users[sender].de = de;
+            
            
-           
+                    if (Users[sender].stat == 'g1')
+                        {
+                            
+                            if (de == '1') {
+                                fb.sendTextMessageT(sender,2);
+                                 Users[sender].stat = 'g2';
+                            }
+                            else 
+                            {
+                                Users[sender].stat = 'c';
+                                fb.sendTextMessage(sender,'اكتب المحافظة');
+                            }
+                           
+                            
+                            return;
+                        }
                 
                     fb.sendTextMessage(sender,'اكتب المحافظة');
-                    Users[sender].de = de;
+                    
                     Users[sender].stat = 'c';
                 
             
