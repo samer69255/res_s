@@ -28,13 +28,22 @@ function sendTextMessage(sender, text) {
 
 
 function getOB() {
+    
+    var btns = [
+        {type:'postback',
+        title:'علمي',
+        payload:'علمي'
+        },
+        {{type:'postback',
+        title:'ادبي',
+        payload:'ادبي'}
+    ];
+    var title = 'اختر الفرغ';
     return {
         
            "template_type": "button",
-     "text":"What do you want to do next?",
-      "buttons": [{"type":"web_url",
-            "url":"https://www.messenger.com",
-            "title":"Visit Messenger"}],
+     "text":title,
+      "buttons":btns,
     }
     
 }
