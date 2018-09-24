@@ -77,7 +77,7 @@ app.post('/webhook/', function (req, res) {
             }
             
             
-            fb.sendTextMessage(sender,text);
+            fb.sendTextMessageT(sender,text);
             
             
 
