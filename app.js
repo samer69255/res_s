@@ -91,7 +91,14 @@ app.post('/webhook/', function (req, res) {
         if (event.postback) {
             var text = JSON.stringify(event.postback);
             var de = event.postback.payload;
-            fb.sendTextMessage(sender,2);
+            if (de == '1' || de == '2')
+                {
+                    fb.sendTextMessageT(sender,2);
+                }
+            else {
+                fb.sendFileMessage(sender,'...')
+            }
+            
             continue;
         }
     }
