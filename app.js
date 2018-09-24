@@ -201,6 +201,24 @@ function onF1(res,Id) {
 
 
 function onF2(res,Id) {
+    const files = res.data.files;
+    if (Users[Id].de == '2')
+    var id = files[0].id;
+    else {
+        var s1 = files[0].name.indexOf('تطبيقي');
+        if (s1 > -1) {var S1 = files[1].id; var S2 = files[0].id};
+        else {var S1 = files[0].id; var S2 = files[1].id};
+        
+        if (Users[Id].de == 'd1') var id = S1; else var id = S2;
+    }
+    
+    listFile(id,(err,rr) => {
+        onF3(rr,Id);
+    });
+}
+
+
+function onF3(res,Id) {
      const files = res.data.files;
     
     if (files.length) {
