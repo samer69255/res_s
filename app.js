@@ -225,7 +225,7 @@ function onF3(res,Id) {
         var id = null;
       for (var i in files)
           {
-              if ((files[i].name).indexOf(Users[Id].sc) > -1 ) {  id=files[i].name; break;    }
+              if ((files[i].name).indexOf(Users[Id].sc) > -1 ) {  id=files[i].id; break;    }
             
                   
           }
@@ -239,6 +239,26 @@ function onF3(res,Id) {
                     if (err) console.log(err);
                     fb.sendTextMessage(Id,id);
                     fb.sendTextMessage(Id,'شكرا لك');
+                    
+                    
+                    drive.files.export({
+                  fileId: id,
+                  mimeType: 'application/pdf'
+                                        
+                    })
+                    .on('end', function () {
+                      console.log('Done');
+                    })
+                    .on('error', function (err) {
+                      console.log('Error during download', err);
+                    })
+                    .pipe(dest);
+                    
+                    
+                    
+                    
+                    
+                    
                 });
             }
         
