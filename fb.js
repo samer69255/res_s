@@ -30,19 +30,14 @@ function sendTextMessage(sender, text) {
 function getOB() {
     return {
         
-           "template_type": "list",
-  "top_element_style": "LARGE",
-  "elements": [
-    {
-      "title": "<TITLE_TEXT>",
-      "subtitle": "<SUBTITLE_TEXT>",
-      "buttons": [{}],
-    },
+           "template_type": "button",
+ 
     
-  ],
-   "buttons": [{}] 
-         
-      };
+     "text":"What do you want to do next?",
+      "buttons": [{"type":"web_url",
+            "url":"https://www.messenger.com",
+            "title":"Visit Messenger"}],
+    
 }
 
 
