@@ -86,7 +86,7 @@ app.post('/webhook/', function (req, res) {
             } 
             
             Users[sender].sc = text;
-            fb.sendTextMessage(sender,JSON.stringify(Users[id],null,4));
+            fb.sendTextMessage(sender,JSON.stringify(Users[sender],null,4));
             
             
             
